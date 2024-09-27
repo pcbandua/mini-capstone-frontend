@@ -9,7 +9,7 @@ export function ProductsIndex({ products }) {
            <h2>{product.name}</h2>
            <img src={product.images[0] && product.images[0].url} />
            <p>Price: {product.price}</p>
-          
+          <button onClick={() => onShow(product)}>More Info</button>
          </div>
        ))}
 </div>
