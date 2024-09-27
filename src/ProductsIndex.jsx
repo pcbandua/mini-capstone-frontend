@@ -1,11 +1,13 @@
-export function PhotosIndex({ products }) {
+export function ProductsIndex({ products }) {
+  // console.log(props.products)
   return (
     <div>
       <h1>All products</h1>
-       {products.map((products) => (
+      console.log(product.url)
+       {products.map((product) => (
          <div key={product.id}>
            <h2>{product.name}</h2>
-           <img src={product.url} />
+           <img src={product.images[0] && product.images[0].url} />
            <p>Price: {product.price}</p>
           
          </div>
