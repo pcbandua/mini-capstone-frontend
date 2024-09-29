@@ -1,4 +1,4 @@
-export function ProductsShow({ product, onUpdate }) {
+export function ProductsShow({ product, onUpdate, onDestroy }) {
 
   const handleSubmit = (event) => {
          event.preventDefault();
@@ -18,7 +18,7 @@ export function ProductsShow({ product, onUpdate }) {
           Name: <input defaultValue={product.name} name="name" type="text" />
         </div>
         <div>
-          Image Url: <input defaultValue={product.url} name="image url" type="text" />
+          Image Url: <input defaultValue={product.url} name="image_url" type="text" />
         </div>
         <div>
           Price: <input defaultValue={product.price} name="price" type="text" />
@@ -26,8 +26,9 @@ export function ProductsShow({ product, onUpdate }) {
         <div>
           Description: <input defaultValue={product.description} name="description" type="text" />
         </div>
-        <button type = "submit">Update</button>
-    </form></>
-
+        <button type="submit">Update</button>
+    </form>
+    <button onClick={() => onDestroy(product.id)}>Destroy</button>
+    </>
   );
 }
