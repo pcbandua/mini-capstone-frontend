@@ -1,4 +1,4 @@
-export function ProductsIndex({ products }) {
+export function ProductsIndex({ products, onShow }) {
   // console.log(props.products)
   return (
     <div>

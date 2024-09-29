@@ -7,7 +7,7 @@ import { ProductsShow } from "./ProductsShow";
 
 export function ProductsPage() {
   const [products, setProducts] = useState([]);
-  const [isProductsShowVisible, setIsProdcutsShowVisible] = useState(false);
+  const [isProductsShowVisible, setIsProductsShowVisible] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({})
 
   const handleIndex = () => {
@@ -28,14 +28,33 @@ export function ProductsPage() {
 
   const handleShow = (product) => {
     console.log("handleShow", product);
-    setIsProductShowVisible(true);
+    setIsProductsShowVisible(true);
     setCurrentProduct(product);
   };
 
+  const handleUpdate = (id, params, successCallback) => {
+    console.log("handleUpdate", params);
+    axios.patch(`http://localhost:3000/products/${id}.json`, params).then((response) => {
+      setProducts(
+        products.map((product) => {
+        if(product.id===response.data.id){
+          return response.data;}
+          else {
+            return product;
+          }
+      })
+    );
+    successCallback();
+    handleClose();
+  });
+}
+
   const handleClose = () => {
     console.log("handleClose");
-    setIsProductShowVisible(false)
+    setIsProductsShowVisible(false)
   };
+
+
 
   useEffect(handleIndex, []);
 
@@ -46,7 +65,7 @@ export function ProductsPage() {
       <ProductsIndex products={products} onShow={handleShow} />
       <Modal show={isProductsShowVisible} onClose={handleClose}>
         <h1>Modal Test</h1>
-        <ProductsShow product={currentProduct}/>
+        <ProductsShow product={currentProduct} onUpdate={handleUpdate}/>
         </Modal>
     </main>
   );

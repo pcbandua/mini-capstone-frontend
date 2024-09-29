@@ -21,7 +21,7 @@ export function ProductsNew({ onCreate }) {
         <div>
           Tax: <input name="height" type="text" />
         </div>
-        <button type="submit">Create Prodcut</button>
+        <button type="submit">Create Product</button>
       </form>
     </div>
   );
