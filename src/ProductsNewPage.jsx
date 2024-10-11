@@ -1,9 +1,19 @@
-export function ProductsNew({ onCreate }) {
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+export function ProductsNewPage() {
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log ('handling Submit')
     const params = new FormData(event.target);
-    onCreate(params, () => event.target.reset ());
+    axios.post('http://localhost:3000/products.json', params).then(response => {
+      console.log(response.data)
+      navigate('/');
+    })
+  
   };
   return (
     <div>
@@ -21,7 +31,10 @@ export function ProductsNew({ onCreate }) {
         <div>
           Description: <input name="description" type="text" />
         </div>
-        <button type="submit">Create Product</button>
+        <div>
+          Supplier ID: <input name="supplier_id" type="text" />
+        </div>
+        <button type="submit">Create New Product</button>
       </form>
     </div>
   );
