@@ -6,7 +6,8 @@ import { SignupPage } from "./SignupPage";
 import { LoginPage } from "./LoginPage";
 import { ProductsPage } from "./ProductsPage";
 import { ProductsNewPage } from "./ProductsNewPage";
-import { ProductsIndexPage } from "./ProductsIndexPage";
+import { ProductsIndex} from "./ProductsIndex";
+import { MyCart } from "./MyCart";
 import { Footer } from "./Footer";
 
 const router = createBrowserRouter([
@@ -36,8 +37,13 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
+        path: "/my_cart",
+          element: <MyCart />,
+          loader: () => axios.get("http://localhost:3000/orders.json").then((response) => response.data),
+           },
+      {
       path: "/products",
-        element: <ProductsIndexPage />,
+        element: <ProductsIndex />,
         loader: () => axios.get("http://localhost:3000/products.json").then((response) => response.data),
          },
     ],
