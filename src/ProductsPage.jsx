@@ -66,7 +66,7 @@ export function ProductsPage() {
 
   return (
     <main>
-      <h1>Welcome to React!</h1>
+    
       {/* <ProductsNew onCreate={handleCreate}/> */}
       <ProductsIndex products={products} onShow={handleShow} />
       <Modal show={isProductsShowVisible} onClose={handleClose}>
